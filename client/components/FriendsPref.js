@@ -48,7 +48,7 @@ class FriendsPref extends React.Component {
         <div className='add-user-container col-md-12 col-xl-12'>
           <div className='row row-eq-height'>
             <div className='add-friends col-sm-12 col-md-6 col-xl-6'>
-              <h1>Select <span className='cursive'>pea-ps</span> to dine with</h1>
+              <h1>Select <span className='cursive'>peaps</span> to dine with</h1>
               {this.displayButton()}
               <SelectedFriends {...this.props} />
             </div>

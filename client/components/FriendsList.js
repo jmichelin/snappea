@@ -49,7 +49,7 @@ class FriendsList extends React.Component {
   render(){
     return(
       <div className='friends'>
-        <h1>Your <span className='cursive'>pea-ps</span></h1>
+        <h1>Your <span className='cursive'>peaps</span></h1>
         <ul className='list-group'>
           {this.displayFriends()}
         </ul>
