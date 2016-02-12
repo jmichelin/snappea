@@ -54,6 +54,7 @@ const mapStateToProps = (state) => {
   return {
     //auth state
     username: state.authReducer.username,
+    categories: state.authReducer.categories,
     isLoggedIn: state.authReducer.isLoggedIn,
     isFetching: state.authReducer.isFetching,
     authErrorMsg: state.authReducer.authErrorMsg,

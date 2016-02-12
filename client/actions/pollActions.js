@@ -68,6 +68,7 @@ export const sendPollChoices = (choices) => {
         username: choices.username,
         selected: choices.selected,
         unselected: choices.unselected
+        // multipliers: choices.multipliers
       })
     })
   }
