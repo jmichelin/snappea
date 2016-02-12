@@ -21,6 +21,7 @@ router.post('/', function(req, res) {
   var firstname = req.body.firstname;
   var lastname = req.body.lastname;
   var email = req.body.email;
+  var phone = req.body.phone;
 
   var gravatarUrl = 'http:'+gravatar.url(email, {s: '200'});
 
@@ -34,6 +35,7 @@ router.post('/', function(req, res) {
         firstname: firstname,
         lastname: lastname,
         email: email,
+        phone: phone,
         categories: {test:'test'},
         friends: {fuy7:false},
         beenTo: {test:false},
