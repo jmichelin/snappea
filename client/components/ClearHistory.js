@@ -11,7 +11,9 @@ class ClearHistory extends React.Component {
     const { username } = this.props;
     const { clearHistory } = this.props.dinerActions;
 
+
     clearHistory(username);
+    this.props.closeClearModal();
   }
 
   render(){
@@ -24,12 +26,12 @@ class ClearHistory extends React.Component {
         <Modal.Header closeButton>
         </Modal.Header>
         <Modal.Body>
-          <h1>Are you sure you want to delete your preferences?</h1>
+          <h1>Are you sure you want to clear your restaurant history?</h1>
           <Button onClick={this.handleClearHistory}>
             Yes, clear my restaurant history
           </Button>
           <Button onClick={closeClearModal}>
-            No, I change my mind
+            No, I changed my mind
           </Button>
         </Modal.Body>
       </Modal>

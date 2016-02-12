@@ -136,13 +136,13 @@ class Navigation extends React.Component {
         <NavItem
         eventKey={1}
         className='welcome-nav'>
-        Welcome {this.props.username} !
+        Welcome {this.props.username}!
         </NavItem>
         <NavItem
           eventKey={2}
           href='#'
           onClick={this.displayLocationChoice}>
-          Lets Eat
+          Let's Eat
         </NavItem>
         <NavItem
           eventKey={2}
@@ -160,7 +160,7 @@ class Navigation extends React.Component {
         eventKey={5}
         href='#'
         onClick={this.displayPreferences}>
-        Settings
+        Preferences
         </NavItem>
         <NavItem
           eventKey={6}

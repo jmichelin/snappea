@@ -3,12 +3,18 @@ import React from 'react';
 //Components
 import AddFriend from './AddFriend';
 import FriendsList from './FriendsList';
+import ProfilePic from './ProfilePic';
 
 class Friends extends React.Component {
   constructor(){
     super();
     this.sendQuery = this.sendQuery.bind(this);
     this.displaySearchResults = this.displaySearchResults.bind(this);
+    this.openPicModal = this.openPicModal.bind(this);
+    this.closePicModal = this.closePicModal.bind(this);
+    this.state = {
+      showPicModal: false
+    };
   }
 
   componentWillMount(){
@@ -54,31 +60,60 @@ class Friends extends React.Component {
         <div>
           Sorry, no peas in this pod.
         </div>
-      )
+      );
     }
   }
 
+  openPicModal(){
+    this.setState({
+      showPicModal: true
+    });
+  }
+
+  closePicModal(){
+    this.setState({
+      showPicModal: false
+    });
+  }
+
+
   render(){
+    console.log(this.props.avatarUrl);
     return(
-    <div className='add-user-container col-md-12'>
-       <div className='row'>
-          <div className='add-friends col-sm-12 col-md-6'>
-            <h1>Add Pea-ps</h1>
-            <div className='input-group'>
-              <span className='input-group-addon'>@</span>
-              <input
-                className='form-control'
-                type='text'
-                placeholder='Enter a username'
-                ref='friendQuery'
-                onChange={this.sendQuery} />
+      <div>
+        <div className='add-user-container col-md-12'>
+          <div className='row'>
+            <div className='add-friends col-sm-12 col-md-6'>
+              <h1>Add <span className='cursive'>peaps</span></h1>
+              <div className='input-group'>
+                <span className='input-group-addon'>@</span>
+                <input
+                  className='form-control'
+                  type='text'
+                  placeholder='Enter a username'
+                  ref='friendQuery'
+                  onChange={this.sendQuery} />
+              </div>
+              <ul className='list-group'>
+                {this.displaySearchResults()}
+              </ul>
             </div>
-            <ul className='list-group'>
-              {this.displaySearchResults()}
-            </ul>
+            <div className='user-friends col-sm-12 col-md-6'>
+              <FriendsList {...this.props} />
+            </div>
           </div>
-          <div className='user-friends col-sm-12 col-md-6'>
-            <FriendsList {...this.props} />
+        </div>
+        <div className='text-center'>
+          <h1 className='cursive'>Profile picture</h1>
+          <img src={this.props.avatarUrl}/>
+          <div>
+            <button onClick={this.openPicModal}>
+              Change your pic
+            </button>
+            <ProfilePic
+              {...this.props}
+              showPicModal={this.state.showPicModal}
+              closePicModal={this.closePicModal} />
           </div>
         </div>
       </div>

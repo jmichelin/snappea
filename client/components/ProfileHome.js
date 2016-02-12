@@ -78,6 +78,15 @@ class ProfileHome extends React.Component {
           <div>
             <h1>Restaurants you've visited</h1>
             {history}
+            <div>
+              <button className='btn btn-block' onClick={this.openClearModal}>
+                Clear your history
+              </button>
+              <ClearHistory
+                {...this.props}
+                showClearModal={this.state.showClearModal}
+                closeClearModal={this.closeClearModal} />
+            </div>
           </div>
         )
       }

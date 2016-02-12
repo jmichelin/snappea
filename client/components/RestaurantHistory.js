@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 class RestaurantHistory extends React.Component {
+
   render(){
     const { restaurantName, link, date, city } = this.props;
     return (
