@@ -71,10 +71,9 @@ export default function pollReducer(state = initialState, action){
       return Object.assign({}, state, {
         topCategories: action.topCategories
       })
-    case ActionTypes.SEND_LIKED_CATEGORY:
+    case ActionTypes.LOAD_LIKES:
       return Object.assign({}, state, {
-        category: action.info.category,
-        multiplier: action.info.multiplier,
+        topCategories: action.info.topCategories
       })
     default:
       return state;

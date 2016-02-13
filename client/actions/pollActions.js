@@ -163,7 +163,7 @@ const resetSuccess = () => {
 }
 
 export const LOAD_TOP_CATEGORIES = 'LOAD_TOP_CATEGORIES';
-export const SEND_LIKED_CATEGORY = 'SEND_LIKED_CATEGORY';
+export const LOAD_LIKES = 'LOAD_LIKES';
 
 export const fetchTopCategories = (username) => {
   return dispatch => {
@@ -197,8 +197,6 @@ export const likeCategory = (request) => {
   return dispatch => {
     console.log('inside dispatch');
 
-  dispatch(sendLikedCategory(request));
-
     return fetch('http://localhost:5679/preference', {
       method: 'PUT',
       headers: {
@@ -211,13 +209,19 @@ export const likeCategory = (request) => {
         multiplier: 2
       })
     })
+    .then(response => {
+      return response.json();
+    })
+    .then(response => {
+      dispatch(loadLikes(response));
+    })
   }
 }
 
-const sendLikedCategory = (info) => {
+const loadLikes = (info) => {
   console.log("inside action creator:");
   return {
-    type: SEND_LIKED_CATEGORY,
+    type: LOAD_LIKES,
     info
   }
 }
@@ -228,7 +232,7 @@ export const dislikeCategory = (request) => {
   return dispatch => {
     console.log('inside dispatch');
 
-  // dispatch(sendDislikedCategory(request));
+    // dispatch(sendDislikedCategory(request));
 
     return fetch('http://localhost:5679/preference', {
       method: 'PUT',

@@ -62,9 +62,19 @@ router.put('/',function(req,res){
         user.topCategories.forEach(function(categoryObj) {
           if(categoryObj.name === category) {
             categoryObj.multiplier = multiplier;
+            if (user.categories[category]){
+              user.categories[category][2] = multiplier;
+            }
+            else if(multiplier === 2){
+              user.categories[category] = [1,1,2]; //default for liked category if not yet selected by user
+            }
+            else if(multiplier === 0) {
+              user.categories[category] = [0,1,0]; //default for disliked category if not yet unselected by user
+            }
           }
         });
         user.markModified('topCategories');
+        user.markModified('categories');
       }
 
       //takes each selected category and adds one to number of times selected and number of times seen
@@ -77,7 +87,7 @@ router.put('/',function(req,res){
             user.categories[categoryName][1]+=1;
           }
           else {
-            user.categories[categoryName] = [1,1]; //[times selected, times seen
+            user.categories[categoryName] = [1,1,1]; //[times selected, times seen, multiplier for topCategories defaults at 1
             }
           });
 
@@ -87,7 +97,7 @@ router.put('/',function(req,res){
               user.categories[categoryName][1]+=1;
             }
             else {
-              user.categories[categoryName] = [0,1];
+              user.categories[categoryName] = [0,1,1];
             }
           });
 

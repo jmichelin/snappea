@@ -27,15 +27,19 @@ module.exports = function(requestObj,res,diners){ //account for multiple diners
 					// for each user {categories: {<categoryoffood>: [<num of times selected>, <num of times seen>, <multiplier>]}
 					if (diners[i].categories[categoryName]){
 						var numerator = diners[i].categories[categoryName][0] * diners[i].categories[categoryName][2];
+						console.log("unweighted numerator:", diners[i].categories[categoryName][0]);
+						console.log("multiplier:", diners[i].categories[categoryName][2]);
 						console.log("numerator:", numerator);
 						var denominator = diners[i].categories[categoryName][1];
 						console.log("denominator:", denominator);
+						console.log("previous sum:", sum);
 						sum+=numerator/denominator;
+						console.log("unweighted sum:", diners[i].categories[categoryName][0] / diners[i].categories[categoryName][1]);
 						console.log("sum:", sum);
 					}
 				})
 				console.log('categories.length', categories.length);
-				var weight = Math.pow(sum/categories.length+1,4);
+				var weight = Math.pow(sum/categories.length+1,2);
 				console.log("weight:", weight);
 				business.weight += weight;
 				console.log("line 41 business.weight:", business.weight);

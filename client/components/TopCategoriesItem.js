@@ -7,6 +7,25 @@ class TopCategoriesItem extends React.Component {
     this.handleDislike = this.handleDislike.bind(this);
   }
 
+  componentWillMount() {
+    if(this.props.multiplier === 2) {
+      this.setState({
+        likeButton: "btn btn-left btn-primary btn-xs active focus",
+        dislikeButton: "btn btn-right btn-primary btn-xs"
+      });
+    } else if(this.props.multiplier === 0) {
+      this.setState({
+        likeButton: "btn btn-left btn-primary btn-xs",
+        dislikeButton: "btn btn-right btn-primary btn-xs active focus"
+      });
+    } else {
+      this.setState({
+        likeButton: "btn btn-left btn-primary btn-xs",
+        dislikeButton: "btn btn-right btn-primary btn-xs"
+      });
+    }
+  }
+
   handleLike() {
     const { category, username } = this.props;
     const { likeCategory } = this.props.pollActions;
@@ -15,6 +34,10 @@ class TopCategoriesItem extends React.Component {
       category: category
     };
     likeCategory(request);
+    this.setState( {
+      likeButton: "btn btn-left btn-primary btn-xs active focus",
+      dislikeButton: "btn btn-right btn-primary btn-xs"
+    });
   }
 
   handleDislike() {
@@ -25,14 +48,18 @@ class TopCategoriesItem extends React.Component {
       category: category
     };
     dislikeCategory(request);
+    this.setState( {
+      likeButton: "btn btn-left btn-primary btn-xs",
+      dislikeButton: "btn btn-right btn-primary btn-xs active focus"
+     });
   }
 
   render() {
     return(
       <li className='col-sm-6 col-md-4 list-group-item'>
-        <p>{this.props.category}: {this.props.multiplier}</p>
-        <button onClick={ this.handleLike } type="button" className="btn btn-left btn-primary btn-xs"><span className="glyphicon glyphicon-thumbs-up"></span> Like</button>
-        <button onClick={ this.handleDislike } type="button" className="btn btn-right btn-primary btn-xs"><span className="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
+        <p>{this.props.category}</p>
+        <button onClick={ this.handleLike } type="button" className={this.state.likeButton}><span className="glyphicon glyphicon-thumbs-up"></span> Like</button>
+        <button onClick={ this.handleDislike } type="button" className={this.state.dislikeButton}><span className="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
       </li>
     );
   }
