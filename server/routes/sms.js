@@ -10,8 +10,10 @@ router.post('/', function(req, res){
     body: req.body.message,
     mediaUrl: req.body.url,
   }, function(err, message) {
-    if err console.error(err);
+    if(err){ console.error(err)};
     console.log(message.sid);
     res.send(message.sid);
   });
 })
+
+module.exports = router;

@@ -180,3 +180,5 @@ export const clearFriends = () => {
     });
   }
 }
+
+//Main mesage friend function
