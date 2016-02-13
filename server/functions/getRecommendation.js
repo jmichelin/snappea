@@ -3,6 +3,7 @@ var request_yelp = require('./request_yelp');
 module.exports = function(requestObj,res,diners){ //account for multiple diners
 
 	request_yelp(requestObj,function(yelpErr,yelpRes,yelpBody){
+		console.log("+++| 6 | requestObj in getRecommendation: ", requestObj)
 		if (yelpErr){
 			console.log('error finding businesses');
 			res.send(yelpErr);
