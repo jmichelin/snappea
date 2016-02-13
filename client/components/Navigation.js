@@ -90,10 +90,11 @@ class Navigation extends React.Component {
 
   displayPreferences(){
     const { clearPoll } = this.props.authActions;
-    const { refreshPoll, fetchYelpData } = this.props.pollActions;
+    const { refreshPoll, fetchYelpData, fetchTopCategories } = this.props.pollActions;
     const { displayMorePreferences } = this.props.viewActions;
     const { clearDiners, clearLocation } = this.props.dinerActions;
     const { clearFriends } = this.props.friendActions;
+    const { username } = this.props;
 
     refreshPoll();
     clearPoll();
@@ -102,6 +103,7 @@ class Navigation extends React.Component {
     clearFriends();
     fetchYelpData();
     displayMorePreferences();
+    fetchTopCategories(username);
   }
 
   displayFriends(){

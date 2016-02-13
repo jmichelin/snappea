@@ -8,7 +8,8 @@ const initialState = {
   pollErrorMessage: '',
   data: [],
   isRefreshed: false,
-  isFetchingYelp: false
+  isFetchingYelp: false,
+  topCategories: []
 }
 
 export default function pollReducer(state = initialState, action){
@@ -65,6 +66,10 @@ export default function pollReducer(state = initialState, action){
       return Object.assign({}, state, {
         isSubmitting: true,
         pollErrorMessage: ''
+      })
+    case ActionTypes.LOAD_TOP_CATEGORIES:
+      return Object.assign({}, state, {
+        topCategories: action.topCategories
       })
     default:
       return state;

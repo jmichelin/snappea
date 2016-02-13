@@ -14,6 +14,7 @@ db.userSchema = new db.Schema ({
   firstname: {type: String},
   lastname: {type: String},
   categories: {},
+  topCategories: {},
   friends: {},
   beenTo: {},
   email: { type: String },

@@ -64,6 +64,7 @@ const mapStateToProps = (state) => {
     isSubmitting: state.pollReducer.isSubmitting,
     selected: state.pollReducer.selected,
     unselected: state.pollReducer.unselected,
+    topCategories: state.pollReducer.topCategories,
     pollErrorMessage: state.pollReducer.pollErrorMessage,
     data: state.pollReducer.data,
     isFetchingYelp: state.pollReducer.isFetchingYelp,

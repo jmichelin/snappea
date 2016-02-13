@@ -2,6 +2,7 @@ import React from 'react';
 
 //Components
 import PollCategory from './../components/PollCategory';
+import TopCategories from './../components/TopCategories';
 
 class Poll extends React.Component {
   constructor(){
@@ -18,6 +19,7 @@ class Poll extends React.Component {
           data={this.props.data}
           username={this.props.username}
           categories={this.props.categories} />
+        <TopCategories topCategories={this.props.topCategories}/>
       </div>
     )
   }

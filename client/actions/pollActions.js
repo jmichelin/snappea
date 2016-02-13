@@ -68,7 +68,6 @@ export const sendPollChoices = (choices) => {
         username: choices.username,
         selected: choices.selected,
         unselected: choices.unselected
-        // multipliers: choices.multipliers
       })
     })
   }
@@ -161,3 +160,50 @@ const resetSuccess = () => {
     type: RESET_SUCCESS
   }
 }
+
+export const LOAD_TOP_CATEGORIES = 'LOAD_TOP_CATEGORIES';
+
+export const fetchTopCategories = (username) => {
+  return dispatch => {
+    return fetch('http://localhost:5679/preference?username=' + username, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(response => {
+      dispatch(loadTopCategories(response));
+    })
+  }
+}
+
+const loadTopCategories = (topCategories) => {
+  return {
+    type: LOAD_TOP_CATEGORIES,
+    topCategories
+  }
+}
+
+// // Sends poll responses to backend
+// export const sendMultipliers = (multipliers) => {
+//   return dispatch => {
+//     dispatch(sendPollRequest(choices));
+//
+//     return fetch('http://localhost:5679/preference', {
+//       method: 'PUT',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         username: choices.username,
+//         selected: choices.selected,
+//         unselected: choices.unselected
+//       })
+//     })
+//   }
+// }
