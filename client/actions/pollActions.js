@@ -221,3 +221,26 @@ const sendLikedCategory = (info) => {
     info
   }
 }
+
+export const dislikeCategory = (request) => {
+  console.log('inside dislikeCategory');
+  console.log("request:", request);
+  return dispatch => {
+    console.log('inside dispatch');
+
+  // dispatch(sendDislikedCategory(request));
+
+    return fetch('http://localhost:5679/preference', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: request.username,
+        category: request.category,
+        multiplier: 0
+      })
+    })
+  }
+}

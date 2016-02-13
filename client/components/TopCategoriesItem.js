@@ -19,6 +19,7 @@ class TopCategoriesItem extends React.Component {
 
   handleDislike() {
     const { category, username } = this.props;
+    const { dislikeCategory } = this.props.pollActions;
     const request = {
       username: username,
       category: category
