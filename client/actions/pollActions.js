@@ -56,6 +56,7 @@ export const REFRESH_POLL = 'REFRESH_POLL';
 // Sends poll responses to backend
 export const sendPollChoices = (choices) => {
   return dispatch => {
+    console.log('INSIDE DISPATCH');
     dispatch(sendPollRequest(choices));
 
     return fetch('http://localhost:5679/preference', {
@@ -162,6 +163,7 @@ const resetSuccess = () => {
 }
 
 export const LOAD_TOP_CATEGORIES = 'LOAD_TOP_CATEGORIES';
+export const SEND_LIKED_CATEGORY = 'SEND_LIKED_CATEGORY';
 
 export const fetchTopCategories = (username) => {
   return dispatch => {
@@ -188,22 +190,34 @@ const loadTopCategories = (topCategories) => {
   }
 }
 
-// // Sends poll responses to backend
-// export const sendMultipliers = (multipliers) => {
-//   return dispatch => {
-//     dispatch(sendPollRequest(choices));
-//
-//     return fetch('http://localhost:5679/preference', {
-//       method: 'PUT',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         username: choices.username,
-//         selected: choices.selected,
-//         unselected: choices.unselected
-//       })
-//     })
-//   }
-// }
+// Sends liked category to backend
+export const likeCategory = (request) => {
+  console.log('inside likeCategory');
+  console.log("request:", request);
+  return dispatch => {
+    console.log('inside dispatch');
+
+  dispatch(sendLikedCategory(request));
+
+    return fetch('http://localhost:5679/preference', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: request.username,
+        category: request.category,
+        multiplier: 2
+      })
+    })
+  }
+}
+
+const sendLikedCategory = (info) => {
+  console.log("inside action creator:");
+  return {
+    type: SEND_LIKED_CATEGORY,
+    info
+  }
+}

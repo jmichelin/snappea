@@ -3,8 +3,8 @@ import React from 'react';
 import TopCategoriesItem from './../components/TopCategoriesItem';
 
 class TopCategories extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.displayTopCategories = this.displayTopCategories.bind(this);
   }
 
@@ -14,7 +14,9 @@ class TopCategories extends React.Component {
       return(
         <TopCategoriesItem
           key={category.name}
+          pollActions={this.props.pollActions}
           category={category.name}
+          username={this.props.username}
           multiplier={category.multiplier} />
       );
     });

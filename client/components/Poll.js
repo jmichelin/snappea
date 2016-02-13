@@ -19,7 +19,10 @@ class Poll extends React.Component {
           data={this.props.data}
           username={this.props.username}
           categories={this.props.categories} />
-        <TopCategories topCategories={this.props.topCategories}/>
+        <TopCategories
+          pollActions={this.props.pollActions}
+          topCategories={this.props.topCategories}
+          username={this.props.username}/>
       </div>
     )
   }
