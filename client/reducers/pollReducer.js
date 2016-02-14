@@ -63,9 +63,11 @@ export default function pollReducer(state = initialState, action){
         data: []
       })
     case ActionTypes.RESET_SUCCESS:
+    console.log('line 66',action.info.topCategories);
       return Object.assign({}, state, {
         isSubmitting: true,
-        pollErrorMessage: ''
+        pollErrorMessage: '',
+        topCategories: action.info.topCategories
       })
     case ActionTypes.LOAD_TOP_CATEGORIES:
       return Object.assign({}, state, {

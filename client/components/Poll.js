@@ -25,7 +25,8 @@ class Poll extends React.Component {
           <TopCategories
             pollActions={this.props.pollActions}
             topCategories={this.props.topCategories}
-            username={this.props.username}/>
+            username={this.props.username}
+            wasReset={this.props.wasReset}/>
         </div>
       </div>
     );

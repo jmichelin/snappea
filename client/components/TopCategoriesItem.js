@@ -7,7 +7,7 @@ class TopCategoriesItem extends React.Component {
     this.handleDislike = this.handleDislike.bind(this);
   }
 
-  componentWillMount() {
+  setButtons() {
     if(this.props.multiplier === 2) {
       this.setState({
         likeButton: "btn btn-left btn-primary btn-xs active focus",
@@ -24,6 +24,11 @@ class TopCategoriesItem extends React.Component {
         dislikeButton: "btn btn-right btn-primary btn-xs"
       });
     }
+  }
+
+  componentWillMount() {
+    console.log('line 11 CWM', this.props.category, this.props.multiplier);
+    this.setButtons();
   }
 
   handleLike() {

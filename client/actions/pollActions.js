@@ -150,15 +150,17 @@ export const resetPoll = (credentials) => {
       return response.json();
     })
     .then(response => {
-      dispatch(resetSuccess());
+      dispatch(resetSuccess(response));
     })
     .catch(err => console.error('Error in Reset Poll:', err));
   }
 }
 
-const resetSuccess = () => {
+const resetSuccess = (info) => {
+  console.log('line 160', info);
   return {
-    type: RESET_SUCCESS
+    type: RESET_SUCCESS,
+    info
   }
 }
 

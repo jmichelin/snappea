@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../db');
+var topCategories = require('../topCategories');
 
 router.get('/', function(req,res) {
   var username = req.query.username;
@@ -28,7 +29,9 @@ router.delete('/',function(req,res){
     else{
       console.log('found user');
       user.categories = {test:'test'};
+      user.topCategories = topCategories;
       user.markModified('categories');
+      user.markModified('topCategories');
       user.save(function(err,user){
         console.log('updated user',user);
         res.json(user);
