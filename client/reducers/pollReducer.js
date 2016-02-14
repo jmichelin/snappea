@@ -8,7 +8,8 @@ const initialState = {
   pollErrorMessage: '',
   data: [],
   isRefreshed: false,
-  isFetchingYelp: false
+  isFetchingYelp: false,
+  topCategories: []
 }
 
 export default function pollReducer(state = initialState, action){
@@ -62,9 +63,19 @@ export default function pollReducer(state = initialState, action){
         data: []
       })
     case ActionTypes.RESET_SUCCESS:
+    console.log('line 66',action.info.topCategories);
       return Object.assign({}, state, {
         isSubmitting: true,
-        pollErrorMessage: ''
+        pollErrorMessage: '',
+        topCategories: action.info.topCategories
+      })
+    case ActionTypes.LOAD_TOP_CATEGORIES:
+      return Object.assign({}, state, {
+        topCategories: action.topCategories
+      })
+    case ActionTypes.LOAD_LIKES:
+      return Object.assign({}, state, {
+        topCategories: action.info.topCategories
       })
     default:
       return state;

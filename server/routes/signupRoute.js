@@ -11,6 +11,7 @@ var app = require('../server');
 var getGeolocationData = require('../functions/getGeolocationData');
 var request_yelp = require('../functions/request_yelp');
 var cities = require('../cities');
+var topCategories = require('../topCategories');
 
 //sign up for account
 router.post('/', function(req, res) {
@@ -35,6 +36,7 @@ router.post('/', function(req, res) {
         lastname: lastname,
         email: email,
         categories: {test:'test'},
+        topCategories: topCategories,
         friends: {fuy7:false},
         beenTo: {test:false},
         gravatarUrl: gravatarUrl,
@@ -43,10 +45,11 @@ router.post('/', function(req, res) {
       });
 
       user.markModified('categories');
+      user.markModified('topCategories');
       user.markModified('beenTo');
 
       user.save(function(err, user) {
-        console.log('inside user.save');
+        console.log('inside user.save', user);
         if (err) {
           console.log("error: ", err);
           res.send(err);

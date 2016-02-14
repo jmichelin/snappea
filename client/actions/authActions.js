@@ -94,7 +94,7 @@ export const authenticateUser = (token) => {
     .then(response => {
       try {
         if(response.username){
-          dispatch(authenticateSuccess(response.username));
+          dispatch(authenticateSuccess(response));
           dispatch(syncHistory(response.beenTo));
           dispatch(displayProfileHome());
           dispatch(routeActions.push('/profile'));
@@ -123,6 +123,7 @@ const authenticateError = (err) => {
 }
 
 const authenticateSuccess = (info) => {
+  console.log('info', info);
   return {
     type: AUTHENTICATE_SUCCESS,
     info
