@@ -67,12 +67,11 @@ class RestaurantPref extends React.Component {
 
   openMessageModal(){
     this.setState({showMessageModal: true})
-    console.log('+++| 72 | state.showMessageModal: ', this.state.showMessageModal);
   }
 
   closeMessageModal(){
     this.setState({showMessageModal: false})
-    console.log('+++| 77 | state.showMessageModal: ', this.state.showMessageModal);
+  //console.log('+++| 77 | state.showMessageModal: ', this.state.showMessageModal);
   }
 
   closeFavoriteModal(){
