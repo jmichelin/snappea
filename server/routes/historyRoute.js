@@ -7,9 +7,14 @@ var historyToArray = require('../functions/historyToArray');
 router.put('/',function(req,res){
 	console.log('inside historyRoute');
 	console.log('req.body: ',req.body);
+	//add call to yelp api here to get more details on the restarant?
 	var username = req.body.username;
 	var restaurantName = req.body.restaurantName;
 	var restaurantId = req.body.restaurantId;
+	var city = req.body.city;
+	var rating = req.body.rating;
+	var phone = req.body.phone;
+	var image = req.body.image;
 	db.User.findOne({username:username},function(err,user){
 		if (err){
 			res.send(err);
@@ -26,7 +31,12 @@ router.put('/',function(req,res){
 			name:restaurantName,
 			url:'http://www.yelp.com/biz/'+restaurantId,
 			date:Date.now(),
-			prettyDate:month+'/'+day+'/'+year
+			prettyDate:month+'/'+day+'/'+year,
+			restaruantId:restaurantId,
+			city: city,
+			rating: rating,
+			phone: phone,
+			image: image
 		}
 		user.markModified('beenTo');
 		user.save(function(err,user){
@@ -50,12 +60,3 @@ router.delete('/',function(req,res){
 })
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
