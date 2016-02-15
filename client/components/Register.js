@@ -10,6 +10,7 @@ class Register extends React.Component {
     this.setPw = this.setPw.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setEmail = this.setEmail.bind(this);
+    this.setPhone = this.setPhone.bind(this);
     this.displayAlphaErrFirst = this.displayAlphaErrFirst.bind(this);
     this.displayAlphaErrLast = this.displayAlphaErrLast.bind(this);
     this.displayEmailErr = this.displayEmailErr.bind(this);
@@ -23,6 +24,7 @@ class Register extends React.Component {
       pw: '',
       username: '',
       email: '',
+      phone: '',
       runStatus: ''
     }
   }
@@ -57,6 +59,12 @@ class Register extends React.Component {
     })
   }
 
+  setPhone(e){
+    this.setState({
+      phone: e.target.value
+    })
+  }
+
   displayAlphaErrFirst(){
     return isValid.isAlpha(this.state.first) ? null : "input must be a-z characters"
   }
@@ -68,6 +76,11 @@ class Register extends React.Component {
   displayEmailErr(){
     return isValid.isEmail(this.state.email) ? null :
     <span className="login-error">please enter a valid email address</span>
+  }
+
+  displayPhoneErr(){
+    return isValid.isPhone(this.state.phone) ? null :
+    <span className="login-error">please enter a valid phone number</span>
   }
 
   displayUsernameErr(){
@@ -83,12 +96,13 @@ class Register extends React.Component {
   }
 
   isFormError(){
-    if(this.state.first.length === 0 || this.state.last.length === 0 || this.state.pw.length === 0 || this.state.username.length === 0 || this.state.email.length === 0){
+    if(this.state.first.length === 0 || this.state.last.length === 0 || this.state.pw.length === 0 || this.state.username.length === 0 || this.state.email.length === 0 || this.state.phone.length === 0){
       this.setState({runStatus: 'Required fields cannot be left empty'});
       return true;
     }
 
-    if(this.displayAlphaErrFirst() || this.displayAlphaErrLast() || this.displayEmailErr()){
+    if(this.displayAlphaErrFirst() || this.displayAlphaErrLast() || this.displayEmailErr() ||
+    this.displayPhoneErr()){
       this.setState({runStatus: 'Please fix all form errors before submitting'});
       return true;
     }
@@ -98,7 +112,7 @@ class Register extends React.Component {
 
   handleClick(e){
     e.preventDefault();
-
+    console.log('in handleClick Register');
     if(!this.isFormError()){
       const { registerUser } = this.props.authActions;
       const firstname = this.refs.firstname;
@@ -106,13 +120,16 @@ class Register extends React.Component {
       const username = this.refs.username;
       const password = this.refs.password;
       const email = this.refs.email;
+      const phone = this.refs.phone;
       const userInfo = {
         firstname: firstname.value,
         lastname: lastname.value,
         username: username.value,
         password: password.value,
-        email: email.value
+        email: email.value,
+        phone: phone.value
       };
+      console.log('userInfo in Register: ', userInfo);
 
       registerUser(userInfo);
 
@@ -121,6 +138,7 @@ class Register extends React.Component {
       username.value = '';
       password.value = '';
       email.value = '';
+      phone.value = '';
     }
   }
 
@@ -179,6 +197,14 @@ class Register extends React.Component {
             placeholder='Email*'
             ref='email'
             onChange={this.setEmail} />
+        </div>
+        <div className='form-group'>
+          <input
+            type='phone'
+            className='form-control'
+            placeholder='Phone*'
+            ref='phone'
+            onChange={this.setPhone} />
         </div>
         <span className="login-error form-error">{this.state.runStatus}</span>
         <div className='form-group'>

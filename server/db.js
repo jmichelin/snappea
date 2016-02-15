@@ -18,6 +18,7 @@ db.userSchema = new db.Schema ({
   friends: {},
   beenTo: {},
   email: { type: String },
+  phone: { type: Number},
   gravatarUrl: { type: String },
   searchTerm: {type: String},
   avatarUrl: {type: String}

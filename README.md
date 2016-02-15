@@ -279,6 +279,9 @@ DELETE request to /history
 data: JSON.stringify({username:String})
 return value: updated beenTo property for that user (which should be an empty array now)
 
+###Twilio
+All notification text messages are sent using the Twilio API and are sent from 1-310-905-8227.
+
 ### Database
 The MongoDB/Mongoose database stores basic information about the user, as well as the user's preferences. The user schema is as shown below:
 ```

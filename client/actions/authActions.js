@@ -10,6 +10,8 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 // Main Register Function
 export const registerUser = (credentials) => {
   return dispatch => {
+    console.log('credentials in registerUser authActions: ', credentials);
+    
     dispatch(registerRequest(credentials));
 
     return fetch('http://localhost:5679/signup', {
@@ -23,14 +25,14 @@ export const registerUser = (credentials) => {
         lastname: credentials.lastname,
         username: credentials.username,
         password: credentials.password,
-        email: credentials.email
+        email: credentials.email,
+        phone: credentials.phone
       })
     })
     .then(response => {
       return response.json();
     })
     .then(response => {
-      console.log('res from registration', response);
       try {
         if(response.success){
           localStorage.token = response.token;

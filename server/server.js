@@ -42,6 +42,7 @@ app.use('/photo', require('./routes/photoRoute'));
 app.use('/poll', require('./routes/pollRoute'));
 app.use('/oauthsignin', require('./routes/oauthSigninRoute'));
 app.use('/history', require('./routes/historyRoute'));
+app.use('/sms', require('./routes/sms'));
 
 var port = process.env.PORT || 5679;
 

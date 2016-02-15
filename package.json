@@ -50,6 +50,7 @@
     "redux-thunk": "^1.0.3",
     "request": "^2.69.0",
     "style-loader": "^0.13.0",
+    "twilio": "^3.3.0-edge",
     "url-loader": "^0.5.7"
   },
   "devDependencies": {

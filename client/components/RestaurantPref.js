@@ -6,6 +6,7 @@ import config from './../../server/config.js';
 //Components
 import Map from './Map';
 import UberInfo from './UberInfo';
+import MessageFriends from './MessageFriends';
 
 class RestaurantPref extends React.Component {
   constructor(){
@@ -13,12 +14,15 @@ class RestaurantPref extends React.Component {
     this.openUberModal = this.openUberModal.bind(this);
     this.closeUberModal = this.closeUberModal.bind(this);
     this.selectRestaurant = this.selectRestaurant.bind(this);
+    this.openMessageModal = this.openMessageModal.bind(this);
+    this.closeMessageModal = this.closeMessageModal.bind(this);
     this.selectNext = this.selectNext.bind(this);
     this.displayLoadingSpinner = this.displayLoadingSpinner.bind(this);
     this.displayTopRestaurant = this.displayTopRestaurant.bind(this);
     this.closeFavoriteModal = this.closeFavoriteModal.bind(this);
     this.state = {
-      showFavoriteModal: false
+      showFavoriteModal: false,
+      showMessageModal: false
     }
   }
 
@@ -61,6 +65,15 @@ class RestaurantPref extends React.Component {
     this.setState({showFavoriteModal: true})
   }
 
+  openMessageModal(){
+    this.setState({showMessageModal: true})
+  }
+
+  closeMessageModal(){
+    this.setState({showMessageModal: false})
+  //console.log('+++| 77 | state.showMessageModal: ', this.state.showMessageModal);
+  }
+
   closeFavoriteModal(){
     this.setState({showFavoriteModal: false})
   }
@@ -96,7 +109,6 @@ class RestaurantPref extends React.Component {
 
   displayTopRestaurant(){
     if (this.props.topRestaurant.name) {
-
     // format start location for direction url
     let destination = '';
     this.props.topRestaurant.location.display_address.forEach(function (line, index, array) {
@@ -156,7 +168,13 @@ class RestaurantPref extends React.Component {
                 <p className='saved-message'>Restaurant added to history</p>
               </Modal.Body>
             </Modal>
+            <MessageFriends
+              {...this.props}
+              showMessageModal={this.state.showMessageModal}
+              closeMessageModal={this.closeMessageModal}
+            />
             <span>
+              <Button className='btn top-button' onClick={this.openMessageModal}>Invite Friends</Button>
               <Button className='btn top-button' onClick={this.selectRestaurant}>Save to History</Button>
               <Button className='btn top-button' onClick={this.selectNext}>Next suggestion</Button>
             </span>

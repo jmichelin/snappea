@@ -31,6 +31,14 @@ const isValid = {
     return false;
   },
 
+  isPhone(input){
+    let phone = input.replace("[^0-9]", "");
+    if(phone.toString().length === 10){
+      return true;
+    }
+    return false;
+  },
+
   isInRange(input){
     if(typeof input !== 'number'){
       return false;
