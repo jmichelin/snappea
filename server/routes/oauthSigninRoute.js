@@ -12,7 +12,7 @@ var cities = require('../cities');
 
 var CLIENT_ID = '1007941048671-mqral0q9jeg17ervhv01gknh7tml237i.apps.googleusercontent.com';
 var CLIENT_SECRET = 'smDen4IcdnGxks6QMeTS6J5s';
-var REDIRECT_URL = 'http://127.0.0.1:5679/oauthsignin';
+var REDIRECT_URL = '/oauthsignin';
 
 var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 

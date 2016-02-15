@@ -7,6 +7,7 @@ var db = {};
 
 db.dbURI = 'mongodb://localhost/gut';
 mongoose.connect(db.dbURI);
+console.log(mongoose.Schema);
 db.Schema = mongoose.Schema;
 db.userSchema = new db.Schema ({
   username: { type: String, required: true, unique: true },

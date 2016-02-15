@@ -9,7 +9,7 @@ export const fetchYelpData = () => {
   return dispatch => {
     dispatch(loadYelpRequest());
 
-    return fetch('http://localhost:5679/poll', {
+    return fetch('/poll', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -59,7 +59,7 @@ export const sendPollChoices = (choices) => {
     console.log('INSIDE DISPATCH');
     dispatch(sendPollRequest(choices));
 
-    return fetch('http://localhost:5679/preference', {
+    return fetch('/preference', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -136,7 +136,7 @@ export const RESET_SUCCESS = 'RESET_SUCCESS';
 //allows user to start with clean slate
 export const resetPoll = (credentials) => {
   return dispatch => {
-    return fetch('http://localhost:5679/preference', {
+    return fetch('/preference', {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -169,7 +169,7 @@ export const LOAD_LIKES = 'LOAD_LIKES';
 
 export const fetchTopCategories = (username) => {
   return dispatch => {
-    return fetch('http://localhost:5679/preference?username=' + username, {
+    return fetch('/preference?username=' + username, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -199,7 +199,7 @@ export const likeCategory = (request) => {
   return dispatch => {
     console.log('inside dispatch');
 
-    return fetch('http://localhost:5679/preference', {
+    return fetch('/preference', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -236,7 +236,7 @@ export const dislikeCategory = (request) => {
 
     // dispatch(sendDislikedCategory(request));
 
-    return fetch('http://localhost:5679/preference', {
+    return fetch('/preference', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
