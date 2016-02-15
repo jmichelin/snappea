@@ -153,7 +153,11 @@ export const addToHistory = (info) => {
         username: info.username,
         restaurantName: info.restaurantName,
         restaurantId: info.restaurantId,
-        date: info.date
+        date: info.date,
+        city: info.city,
+        rating: info.rating,
+        phone: info.phone,
+        image: info.image
       })
     })
     .then(response => {

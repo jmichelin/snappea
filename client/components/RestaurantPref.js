@@ -53,12 +53,17 @@ class RestaurantPref extends React.Component {
   selectRestaurant(){
     const { username } = this.props;
     const { addToHistory } = this.props.dinerActions;
-    const { name, id } = this.props.topRestaurant;
+    const { name, id, rating_img_url_small, display_phone, image_url } = this.props.topRestaurant;
+    const { city } = this.props.topRestaurant.location;
     const restaurantInfo = {
       username: username,
       restaurantName: name,
       restaurantId: id,
-      date: new Date()
+      date: new Date(),
+      city: city,
+      rating: rating_img_url_small,
+      phone: display_phone,
+      image: image_url
     }
 
     addToHistory(restaurantInfo);
