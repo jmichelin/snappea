@@ -14,9 +14,11 @@ db.userSchema = new db.Schema ({
   firstname: {type: String},
   lastname: {type: String},
   categories: {},
+  topCategories: {},
   friends: {},
   beenTo: {},
   email: { type: String },
+  phone: { type: Number},
   gravatarUrl: { type: String },
   searchTerm: {type: String},
   avatarUrl: {type: String}

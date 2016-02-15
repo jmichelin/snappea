@@ -10,6 +10,8 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 // Main Register Function
 export const registerUser = (credentials) => {
   return dispatch => {
+    console.log('credentials in registerUser authActions: ', credentials);
+    
     dispatch(registerRequest(credentials));
 
     return fetch('http://localhost:5679/signup', {
@@ -23,14 +25,14 @@ export const registerUser = (credentials) => {
         lastname: credentials.lastname,
         username: credentials.username,
         password: credentials.password,
-        email: credentials.email
+        email: credentials.email,
+        phone: credentials.phone
       })
     })
     .then(response => {
       return response.json();
     })
     .then(response => {
-      console.log('res from registration', response);
       try {
         if(response.success){
           localStorage.token = response.token;
@@ -94,7 +96,7 @@ export const authenticateUser = (token) => {
     .then(response => {
       try {
         if(response.username){
-          dispatch(authenticateSuccess(response.username));
+          dispatch(authenticateSuccess(response));
           dispatch(syncHistory(response.beenTo));
           dispatch(displayProfileHome());
           dispatch(routeActions.push('/profile'));
@@ -123,6 +125,7 @@ const authenticateError = (err) => {
 }
 
 const authenticateSuccess = (info) => {
+  console.log('info', info);
   return {
     type: AUTHENTICATE_SUCCESS,
     info

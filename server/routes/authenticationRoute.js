@@ -17,8 +17,10 @@ router.post('/', function(req, res){
     if (err) {
       res.send('InvalidToken');
     } else {
+      console.log('user line 21', user);
       res.json({
         username: user.username,
+        categories: user.categories,
         beenTo: historyToArray(user.beenTo),
         avatarUrl: user.avatarUrl
       });

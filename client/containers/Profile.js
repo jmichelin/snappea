@@ -54,6 +54,7 @@ const mapStateToProps = (state) => {
   return {
     //auth state
     username: state.authReducer.username,
+    categories: state.authReducer.categories,
     isLoggedIn: state.authReducer.isLoggedIn,
     isFetching: state.authReducer.isFetching,
     authErrorMsg: state.authReducer.authErrorMsg,
@@ -63,6 +64,7 @@ const mapStateToProps = (state) => {
     isSubmitting: state.pollReducer.isSubmitting,
     selected: state.pollReducer.selected,
     unselected: state.pollReducer.unselected,
+    topCategories: state.pollReducer.topCategories,
     pollErrorMessage: state.pollReducer.pollErrorMessage,
     data: state.pollReducer.data,
     isFetchingYelp: state.pollReducer.isFetchingYelp,

@@ -54,9 +54,10 @@ class ProfileHome extends React.Component {
   displayHistory(){
     const { beenTo } = this.props;
     let history = [];
-
+    //console.log("+++ line 57 component ProfileHome.js value of beenTo =>", beenTo);
     if(this.props.displayHistory){
       if(beenTo.length === 0){
+        console.log('here');
         return(
           <div className='history-header'>
             <h1 className='text-center'>It looks like you haven't visited any restaurants recently...</h1>
@@ -65,11 +66,17 @@ class ProfileHome extends React.Component {
         )
       } else {
         history = beenTo.map((res, ind) => {
+          console.log("+++ res", res);
           return (
             <RestaurantHistory
               restaurantName={res.name}
               link={res.url}
               date={res.prettyDate}
+              restaruantId={res.restaruantId}
+              city={res.city}
+              rating={res.rating}
+              phone={res.phone}
+              image={res.image}
               key={ind} />
           );
         }).slice(0,8);

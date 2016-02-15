@@ -56,6 +56,7 @@ export const REFRESH_POLL = 'REFRESH_POLL';
 // Sends poll responses to backend
 export const sendPollChoices = (choices) => {
   return dispatch => {
+    console.log('INSIDE DISPATCH');
     dispatch(sendPollRequest(choices));
 
     return fetch('http://localhost:5679/preference', {
@@ -149,14 +150,103 @@ export const resetPoll = (credentials) => {
       return response.json();
     })
     .then(response => {
-      dispatch(resetSuccess());
+      dispatch(resetSuccess(response));
     })
     .catch(err => console.error('Error in Reset Poll:', err));
   }
 }
 
-const resetSuccess = () => {
+const resetSuccess = (info) => {
+  console.log('line 160', info);
   return {
-    type: RESET_SUCCESS
+    type: RESET_SUCCESS,
+    info
+  }
+}
+
+export const LOAD_TOP_CATEGORIES = 'LOAD_TOP_CATEGORIES';
+export const LOAD_LIKES = 'LOAD_LIKES';
+
+export const fetchTopCategories = (username) => {
+  return dispatch => {
+    return fetch('http://localhost:5679/preference?username=' + username, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(response => {
+      dispatch(loadTopCategories(response));
+    })
+  }
+}
+
+const loadTopCategories = (topCategories) => {
+  return {
+    type: LOAD_TOP_CATEGORIES,
+    topCategories
+  }
+}
+
+// Sends liked category to backend
+export const likeCategory = (request) => {
+  console.log('inside likeCategory');
+  console.log("request:", request);
+  return dispatch => {
+    console.log('inside dispatch');
+
+    return fetch('http://localhost:5679/preference', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: request.username,
+        category: request.category,
+        multiplier: 2
+      })
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(response => {
+      dispatch(loadLikes(response));
+    })
+  }
+}
+
+const loadLikes = (info) => {
+  console.log("inside action creator:");
+  return {
+    type: LOAD_LIKES,
+    info
+  }
+}
+
+export const dislikeCategory = (request) => {
+  console.log('inside dislikeCategory');
+  console.log("request:", request);
+  return dispatch => {
+    console.log('inside dispatch');
+
+    // dispatch(sendDislikedCategory(request));
+
+    return fetch('http://localhost:5679/preference', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: request.username,
+        category: request.category,
+        multiplier: 0
+      })
+    })
   }
 }

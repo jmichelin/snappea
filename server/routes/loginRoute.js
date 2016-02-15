@@ -39,6 +39,8 @@ router.post('/', function(req, res){
               });
               //console.log('token in login: ', token)
               // serve token to client
+              console.log('user', user);
+
               res.json({
                 success: true,
                 message: 'Enjoy your token!',
@@ -46,7 +48,8 @@ router.post('/', function(req, res){
                 username: username,
                 beenTo: historyToArray(user.beenTo),
                 loginMessage: loginMessage,
-                avatarUrl: user.avatarUrl
+                avatarUrl: user.avatarUrl,
+                categories: user.categories
               });
             } else {
               res.json('InvalidPassword');
